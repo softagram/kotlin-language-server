@@ -13,6 +13,7 @@ import org.javacs.kt.util.TemporaryDirectory
 import org.javacs.kt.util.parseURI
 import org.javacs.kt.progress.Progress
 import org.javacs.kt.progress.LanguageClientProgress
+import org.javacs.kt.semantictokens.semanticTokensLegend
 import java.net.URI
 import java.io.Closeable
 import java.nio.file.Paths
@@ -80,6 +81,7 @@ class KotlinLanguageServer : LanguageServer, LanguageClientAware, Closeable {
         serverCapabilities.documentSymbolProvider = true
         serverCapabilities.workspaceSymbolProvider = true
         serverCapabilities.referencesProvider = true
+        serverCapabilities.semanticTokensProvider = SemanticTokensWithRegistrationOptions(semanticTokensLegend, true)
         serverCapabilities.codeActionProvider = Either.forLeft(true)
         serverCapabilities.documentFormattingProvider = true
         serverCapabilities.documentRangeFormattingProvider = true

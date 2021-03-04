@@ -231,7 +231,12 @@ class KotlinTextDocumentService(
                 val offset = offset(content, position.position.line, position.position.character)
                 findReferences(file, offset, sp)
             }
-        }
+    }
+
+    override fun semanticTokensFull(params: SemanticTokensParams) = async.compute {
+        // TODO
+        SemanticTokens(listOf())
+    }
 
     override fun resolveCodeLens(unresolved: CodeLens): CompletableFuture<CodeLens> {
         TODO("not implemented")
